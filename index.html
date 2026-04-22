@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Rewards Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            color: white;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        .logo-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+            border-radius: 15px; margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: black; font-size: 24px;
+        }
+        h1 { font-weight: 700; font-size: 28px; margin-bottom: 10px; letter-spacing: -1px; }
+        p { color: #888; font-weight: 300; font-size: 15px; margin-bottom: 35px; line-height: 1.5; }
+        
+        /* Form Elemanları */
+        input {
+            width: 100%; padding: 16px; margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px; color: white; outline: none; font-size: 16px;
+        }
+        button {
+            width: 100%; padding: 16px; background: #ffffff; color: #000000;
+            border: none; border-radius: 14px; font-weight: 700; cursor: pointer;
+            transition: 0.3s; font-size: 16px; text-transform: uppercase;
+        }
+        button:hover { background: #ffd700; transform: translateY(-2px); }
+
+        /* Başarı Mesajı Tasarımı (Başlangıçta Gizli) */
+        #success-content { display: none; }
+        .check-icon { font-size: 60px; color: #ffd700; margin-bottom: 20px; }
+        .highlight { color: #ffd700; font-weight: 500; }
+        
+        /* Animasyon */
+        .fade-in { animation: fadeIn 0.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="card" id="main-card">
+    <div id="form-content">
+        <div class="logo-icon">P</div>
+        <h1>Prime Rewards Hub</h1>
+        <p>Please enter your details to participate in the exclusive global giveaway.</p>
+        
+        <form id="giveawayForm">
+            <input type="text" id="userName" placeholder="Full Name" required>
+            <input type="email" id="userEmail" placeholder="Email Address" required>
+            <button type="submit" id="submitBtn">Join Giveaway</button>
+        </form>
+    </div>
+
+    <div id="success-content">
+        <div class="check-icon">✓</div>
+        <h1>Registration Successful!</h1>
+        <p>Your application for the giveaway has been completed successfully.</p>
+        <p>Please follow our social media platforms to stay updated on the results. <br>
+           <span class="highlight">If you win, we will contact you via your email address.</span>
+        </p>
+    </div>
+</div>
+
+<script>
+    // Formun çalışmasını sağlayan küçük kod parçası
+    document.getElementById('giveawayForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Sayfanın yenilenmesini engeller
+        
+        const btn = document.getElementById('submitBtn');
+        btn.innerHTML = "Processing...";
+        btn.disabled = true;
+
+        // Formspree veya Google Sheets gibi bir yere veri göndermek istersen buraya eklenir
+        // Şimdilik direkt görsel geçişi yapıyoruz:
+        setTimeout(() => {
+            document.getElementById('form-content').style.display = 'none';
+            const success = document.getElementById('success-content');
+            success.style.display = 'block';
+            success.classList.add('fade-in');
+        }, 800);
+    });
+</script>
+
+</body>
+</html>
